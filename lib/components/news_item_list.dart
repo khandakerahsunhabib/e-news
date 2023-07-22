@@ -19,10 +19,11 @@ class NewsItemList extends StatelessWidget {
             ));
       },
       child: Padding(
-        padding: const EdgeInsets.only(bottom:10),
+        padding: const EdgeInsets.only(bottom:8),
         child: Card(
           color: Colors.black26,
           shadowColor: Colors.grey,
+          elevation: 2.0,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,7 +74,7 @@ class NewsItemList extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 10, left: 15),
+                padding: const EdgeInsets.only(top: 10, left: 15, right: 5),
                 child: Text(
                     newsModel.author == null
                         ? ""
@@ -84,7 +85,7 @@ class NewsItemList extends StatelessWidget {
                         .copyWith(color: Colors.white)),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 5, bottom: 15, left: 15),
+                padding: const EdgeInsets.only(top: 5, bottom: 15, left: 15, right: 5),
                 child: Text(newsModel.title.toString(),
                     style: Theme.of(context)
                         .textTheme

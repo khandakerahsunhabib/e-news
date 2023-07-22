@@ -49,7 +49,8 @@ class _NewsDetailsState extends State<NewsDetails> {
                 ),
                 placeholder: (context, url) =>
                     const Center(child: CircularProgressIndicator()),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
+                errorWidget: (context, url, error) =>
+                    const Center(child: Icon(Icons.error)),
               ),
               const SizedBox(
                 height: 5,
@@ -82,26 +83,26 @@ class _NewsDetailsState extends State<NewsDetails> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15, bottom: 10),
+                padding: const EdgeInsets.only(left: 15, bottom: 10, right: 5),
                 child: Text(
                     widget.newsModel.author == null
                         ? ""
-                        : "News Source: ${widget.newsModel.author}",
+                        : "Written By: ${widget.newsModel.author}",
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium!
                         .copyWith(color: Colors.white)),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15, bottom: 10),
+                padding: const EdgeInsets.only(left: 15, bottom: 10, right: 5),
                 child: Text(widget.newsModel.title.toString(),
                     style: Theme.of(context)
                         .textTheme
-                        .bodyMedium!
+                        .titleSmall!
                         .copyWith(color: Colors.white)),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15, bottom: 15),
+                padding: const EdgeInsets.only(left: 15, bottom: 15, right: 5),
                 child: Text(widget.newsModel.description.toString(),
                     style: Theme.of(context)
                         .textTheme
@@ -109,10 +110,11 @@ class _NewsDetailsState extends State<NewsDetails> {
                         .copyWith(color: Colors.white)),
               ),
               Padding(
-                padding: const EdgeInsets.only(left:15),
+                padding: const EdgeInsets.only(left: 15),
                 child: ElevatedButton(
                     onPressed: () async {
-                      final Uri uri = Uri.parse(widget.newsModel.url.toString());
+                      final Uri uri =
+                          Uri.parse(widget.newsModel.url.toString());
                       if (!await launchUrl(uri)) {
                         throw Exception("Could not launch");
                       }
