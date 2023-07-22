@@ -16,6 +16,7 @@ class _AllNewsState extends State<AllNews> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: FutureBuilder(
         future: apiService.getAllNews(),
         builder: (context, snapshot) {

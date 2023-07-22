@@ -15,6 +15,7 @@ class _BreakingNewsState extends State<BreakingNews> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: FutureBuilder(
         future: apiService.getBreakingNews(),
         builder: (context, snapshot) {
