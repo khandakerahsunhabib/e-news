@@ -22,22 +22,21 @@ class NewsItemList extends StatelessWidget {
         color: Colors.black26,
         shadowColor: Colors.grey,
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal:5),
-          margin: const EdgeInsets.symmetric(horizontal:5),
+          padding: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CachedNetworkImage(
-                height: 250,
-                width: double.infinity,
-                fit: BoxFit.fitWidth,
-                imageUrl: newsModel.urlToImage.toString(),
-                placeholder: (context, url) =>
-                    const Center(child: CircularProgressIndicator()),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-              ),
-              const SizedBox(
-                height: 5,
+              Padding(
+                padding: const EdgeInsets.only(top: 20, bottom: 10),
+                child: CachedNetworkImage(
+                  width: double.infinity,
+                  fit: BoxFit.fitWidth,
+                  imageUrl: newsModel.urlToImage.toString(),
+                  placeholder: (context, url) =>
+                      const Center(child: CircularProgressIndicator()),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                ),
               ),
               Row(
                 children: [
@@ -49,10 +48,10 @@ class NewsItemList extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12)),
                       child: Text(newsModel.source!.name.toString())),
                   const SizedBox(
-                    width: 8,
+                    width: 10,
                   ),
                   Text(
-                    newsModel.publishedAt.toString(),
+                    newsModel.publishedAt.toString().substring(0, 10),
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium!
@@ -60,27 +59,24 @@ class NewsItemList extends StatelessWidget {
                   )
                 ],
               ),
-              const SizedBox(
-                height: 8,
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Text(
+                    newsModel.author == null
+                        ? ""
+                        : "Written By: ${newsModel.author}",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(color: Colors.white)),
               ),
-              Text(
-                  newsModel.author == null
-                      ? ""
-                      : "News Source: ${newsModel.author}",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(color: Colors.white)),
-              const SizedBox(
-                height: 5,
-              ),
-              Text(newsModel.title.toString(),
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(color: Colors.white)),
-              const SizedBox(
-                height: 10,
+              Padding(
+                padding: const EdgeInsets.only(top: 5, bottom: 5),
+                child: Text(newsModel.title.toString(),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(color: Colors.white)),
               ),
             ],
           ),

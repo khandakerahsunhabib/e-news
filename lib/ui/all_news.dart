@@ -17,25 +17,28 @@ class _AllNewsState extends State<AllNews> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: FutureBuilder(
-        future: apiService.getAllNews(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            List<NewsModel> articlesList = snapshot.data ?? [];
-            return ListView.builder(
-              itemCount: articlesList.length,
-              itemBuilder: (context, index) {
-                return NewsItemList(
-                  newsModel: articlesList[index],
-                );
-              },
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
+      body: Container(
+        margin: const EdgeInsets.all(8),
+        child: FutureBuilder(
+          future: apiService.getAllNews(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              List<NewsModel> articlesList = snapshot.data ?? [];
+              return ListView.builder(
+                itemCount: articlesList.length,
+                itemBuilder: (context, index) {
+                  return NewsItemList(
+                    newsModel: articlesList[index],
+                  );
+                },
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        ),
       ),
     );
   }
