@@ -18,49 +18,62 @@ class NewsItemList extends StatelessWidget {
               builder: (context) => NewsDetails(newsModel: newsModel),
             ));
       },
-      child: Card(
-        color: Colors.black26,
-        shadowColor: Colors.grey,
-        child: Container(
-          padding: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
+      child: Padding(
+        padding: const EdgeInsets.only(bottom:10),
+        child: Card(
+          color: Colors.black26,
+          shadowColor: Colors.grey,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 20, bottom: 10),
+                padding: const EdgeInsets.only(bottom: 15),
                 child: CachedNetworkImage(
-                  width: double.infinity,
-                  fit: BoxFit.fitWidth,
                   imageUrl: newsModel.urlToImage.toString(),
+                  imageBuilder: (context, imageProvider) => Container(
+                    width: double.infinity,
+                    height: 210,
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20)),
+                      image: DecorationImage(
+                          image: imageProvider, fit: BoxFit.cover),
+                    ),
+                  ),
                   placeholder: (context, url) =>
                       const Center(child: CircularProgressIndicator()),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                  errorWidget: (context, url, error) =>
+                      const Center(child: Icon(Icons.error)),
                 ),
               ),
-              Row(
-                children: [
-                  Container(
-                      padding: const EdgeInsets.only(
-                          top: 5, bottom: 5, right: 10, left: 10),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Text(newsModel.source!.name.toString())),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    newsModel.publishedAt.toString().substring(0, 10),
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(color: Colors.white),
-                  )
-                ],
+              Padding(
+                padding: const EdgeInsets.only(left: 15),
+                child: Row(
+                  children: [
+                    Container(
+                        padding: const EdgeInsets.only(
+                            top: 5, bottom: 5, right: 10, left: 10),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12)),
+                        child: Text(newsModel.source!.name.toString())),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      newsModel.publishedAt.toString().substring(0, 10),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(color: Colors.white),
+                    )
+                  ],
+                ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(top: 10, left: 15),
                 child: Text(
                     newsModel.author == null
                         ? ""
@@ -71,7 +84,7 @@ class NewsItemList extends StatelessWidget {
                         .copyWith(color: Colors.white)),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 5, bottom: 5),
+                padding: const EdgeInsets.only(top: 5, bottom: 15, left: 15),
                 child: Text(newsModel.title.toString(),
                     style: Theme.of(context)
                         .textTheme

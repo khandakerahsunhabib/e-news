@@ -18,7 +18,7 @@ class _AllNewsState extends State<AllNews> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Container(
-        margin: const EdgeInsets.all(8),
+        margin: const EdgeInsets.all(15),
         child: FutureBuilder(
           future: apiService.getAllNews(),
           builder: (context, snapshot) {
